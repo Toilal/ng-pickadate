@@ -1,0 +1,22 @@
+{
+  "name": "ng-pickadate",
+  "description": "A set of AngularJS directives for pickadate.js",
+  "version": "0.1.0",
+  "dependencies": {
+    "angular": "~1.3.6",
+    "pickadate": "~3.5.4"
+  },
+  "main": "ng-pickadate",
+  "overrides": {
+    "pickadate": {
+      "main": [
+        "lib/picker.js",
+        "lib/picker.date.js",
+        "lib/picker.time.js",
+        "lib/themes/classic.css",
+        "lib/themes/classic.date.css",
+        "lib/themes/classic.time.css"
+      ]
+    }
+  }
+}

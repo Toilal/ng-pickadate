@@ -1,0 +1,6 @@
+{
+  "name": "ng-pickadate",
+  "description": "A set of AngularJS directives for pickadate.js",
+  "version": "0.1.0",
+  "main": "ng-pickadate"
+}
