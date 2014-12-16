@@ -17,7 +17,7 @@ Set of AngularJS directives for [pickadate.js by Amsul](http://amsul.ca/pickadat
 
 1. Declare the dependency
 
-        angular.module('yourApp', [pickadate]);
+        angular.module('yourApp', ['pickadate']);
 
 2. Use `pick-a-date` and `pick-a-time` directives.
 
