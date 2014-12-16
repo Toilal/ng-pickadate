@@ -1,5 +1,5 @@
 ng-pickadate
-====================
+============
 
 Set of AngularJS directives for [pickadate.js by Amsul](http://amsul.ca/pickadate.js/).
 
@@ -11,7 +11,41 @@ Set of AngularJS directives for [pickadate.js by Amsul](http://amsul.ca/pickadat
 
 ### Install
 
-    bower install ng-pickadate
+1. Install dependency using bower
+
+        bower install ng-pickadate --save
+    
+2. Set `overrides` property in bower.json to register pickadate CSS files
+
+  - Classic theme
+            
+            "overrides": {
+              "pickadate": {
+                "main": [
+                  "lib/picker.js",
+                  "lib/picker.date.js",
+                  "lib/picker.time.js",
+                  "lib/themes/classic.css",
+                  "lib/themes/classic.date.css",
+                  "lib/themes/classic.time.css"
+                ]
+              }
+            }
+
+  - Default theme
+            
+            "overrides": {
+              "pickadate": {
+                "main": [
+                  "lib/picker.js",
+                  "lib/picker.date.js",
+                  "lib/picker.time.js",
+                  "lib/themes/default.css",
+                  "lib/themes/default.date.css",
+                  "lib/themes/default.time.css"
+                ]
+              }
+            }
 
 ### Usage
 
