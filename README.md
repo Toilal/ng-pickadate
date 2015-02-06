@@ -1,7 +1,7 @@
 ng-pickadate
 ============
 
-Set of AngularJS directives for [pickadate.js by Amsul](http://amsul.ca/pickadate.js/).
+AngularJS directives for [pickadate.js by Amsul](http://amsul.ca/pickadate.js/).
 
 ### Requirements
 
