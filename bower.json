@@ -1,7 +1,7 @@
 {
   "name": "ng-pickadate",
   "description": "A set of AngularJS directives for pickadate.js",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "ignore": [],
   "dependencies": {
     "angular": "~1.3.12",
