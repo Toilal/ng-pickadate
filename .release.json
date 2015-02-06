@@ -1,0 +1,17 @@
+{
+    "non-interactive": false,
+    "dry-run": false,
+    "verbose": true,
+    "force": false,
+    "pkgFiles": ["package.json", "bower.json"],
+    "increment": "patch",
+    "commitMessage": "Release v%s",
+    "tagName": "v%s",
+    "tagAnnotation": "v%s",
+    "distRepo": false,
+    "distStageDir": ".stage",
+    "distBase": "dist",
+    "distFiles": ["**/*"],
+    "publish": true,
+    "publishPath": "."
+}
