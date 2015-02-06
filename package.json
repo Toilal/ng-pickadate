@@ -5,9 +5,13 @@
     "Rémi Alvergnat <toilal.dev@gmail.com> (http://www.pragmasphere.com)"
   ],
   "description": "AngularJS directives for pickadate.js",
-  "main": [
-    "ng-pickadate.js"
-  ],
+  "main": "ng-pickadate.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Toilal/ng-pickadate.git"
+  },
+  "bugs": "https://github.com/Toilal/ng-pickadate/issues",
   "keywords": [
     "pickadate",
     "datepicker",
