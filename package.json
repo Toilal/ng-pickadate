@@ -1,6 +1,6 @@
 {
   "name": "ng-pickadate",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "authors": [
     "Rémi Alvergnat <toilal.dev@gmail.com> (http://www.pragmasphere.com)"
   ],
@@ -17,7 +17,6 @@
     "datepicker",
     "angularjs"
   ],
-  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
