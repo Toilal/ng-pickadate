@@ -18,6 +18,11 @@ angular.module('pickadate').directive('pickADate', function () {
                         return;
                     }
                     var select = element.pickadate('picker').get('select'); // selected date
+                    
+                    if(!select){
+                        return;
+                    }
+                    
                     scope.$apply(function () {
                         if (e.hasOwnProperty('clear')) {
                             scope.pickADate = null;
@@ -79,6 +84,11 @@ angular.module('pickadate').directive('pickATime', function () {
                         return;
                     }
                     var select = element.pickatime('picker').get('select'); // selected date
+                    
+                    if(!select){
+                        return;
+                    }
+                    
                     scope.$apply(function () {
                         if (e.hasOwnProperty('clear')) {
                             scope.pickATime = null;
