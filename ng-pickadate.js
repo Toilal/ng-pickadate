@@ -32,8 +32,8 @@ angular.module('pickadate').directive('pickADate', function () {
                             scope.pickADate = new Date(0);
                         }
                         scope.pickADate.setYear(select.obj.getFullYear());
-                        scope.pickADate.setMonth(select.obj.getMonth());
                         scope.pickADate.setDate(select.obj.getDate());
+                        scope.pickADate.setMonth(select.obj.getMonth());
                     });
                 },
                 onClose: function () {
