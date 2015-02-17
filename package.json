@@ -17,11 +17,6 @@
     "datepicker",
     "angularjs"
   ],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components"
-  ],
   "dependencies": {
     "angular": "~1.3.12",
     "pickadate": "~3.5.3"
