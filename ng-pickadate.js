@@ -15,12 +15,9 @@
       link: function (scope, element) {
         var options = angular.extend(scope.pickADateOptions || {}, {
           onSet: function (e) {
-            if (scope.$$phase || scope.$root.$$phase) { // we are coming from $watch or link setup
-              return;
-            }
             var select = element.pickadate('picker').get('select'); // selected date
 
-            scope.$apply(function () {
+            scope.$evalAsync(function () {
               if (e.hasOwnProperty('clear')) {
                 scope.pickADate = null;
                 return;
@@ -81,12 +78,9 @@
       link: function (scope, element) {
         var options = angular.extend(scope.pickATimeOptions || {}, {
           onSet: function (e) {
-            if (scope.$$phase || scope.$root.$$phase) { // we are coming from $watch or link setup
-              return;
-            }
             var select = element.pickatime('picker').get('select'); // selected date
 
-            scope.$apply(function () {
+            scope.$evalAsync(function () {
               if (e.hasOwnProperty('clear')) {
                 scope.pickATime = null;
                 return;
