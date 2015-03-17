@@ -63,8 +63,11 @@ AngularJS directives for [pickadate.js by Amsul](http://amsul.ca/pickadate.js/).
     ```
     
     ```js
-    $scope.curDate = new Date(); // Only the date part of curDate will be synced to pick-a-date directive
-    $scope.curTime = new Date(); // Only the time part of timeDate will be synced to pick-a-time directive
+    $scope.curDate = new Date(); // Only the date part of curDate
+                                 // is synced to pick-a-date directive
+                                 
+    $scope.curTime = new Date(); // Only the time part of timeDate
+                                 // is synced to pick-a-time directive
     ```
 
 3. You can also provide additionnal `max-date` and `min-date` values.
