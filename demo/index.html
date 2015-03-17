@@ -57,7 +57,13 @@ You can provide additional <strong>max-date</strong> and <strong>min-date</stron
 You can define [pickadate.js](http://amsul.ca/pickadate.js/) options through <strong>pick-a-date-options</strong> and
 <strong>pick-a-time-options</strong> directives as well.
 
-<pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;curDate&quot; pick-a-date-options=&quot;{ format: &#39;dd/mm/yy&#39;, selectYears: true }&quot; /&gt;</code></pre>
+<pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;optionsDate&quot; pick-a-date-options=&quot;options&quot; /&gt;</code></pre>
+<pre><code class="js">$scope.optionsDate = new Date();
+$scope.options = { format: 'dd/mm/yy', selectYears: true };</code></pre>
+
+<input type="text" pick-a-date="optionsDate" pick-a-date-options="options">
+
+<p>$scope.optionsDate is {{optionsDate}}</p>
 
 <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.js"></script>

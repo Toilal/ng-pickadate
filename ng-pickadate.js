@@ -3,34 +3,37 @@
 
   angular.module('pickadate', []);
 
-  angular.module('pickadate').directive('pickADate', function () {
+  angular.module('pickadate').directive('pickADate',  function ($parse) {
     return {
       restrict: 'A',
-      scope: {
-        pickADate: '=',
-        minDate: '=',
-        maxDate: '=',
-        pickADateOptions: '='
-      },
-      link: function (scope, element) {
-        var options = angular.extend(scope.pickADateOptions || {}, {
+      link: function (scope, element, attrs) {
+        var model = {
+          pickADate: $parse(attrs.pickADate),
+          minDate: $parse(attrs.minDate),
+          maxDate: $parse(attrs.maxDate),
+          pickADateOptions: $parse(attrs.pickADateOptions)
+        };
+
+        var options = angular.extend(model.pickADateOptions(scope) || {}, {
           onSet: function (e) {
             var select = element.pickadate('picker').get('select'); // selected date
 
             scope.$evalAsync(function () {
               if (e.hasOwnProperty('clear')) {
-                scope.pickADate = null;
+                model.pickADate.assign(scope, null);
                 return;
               }
               if (select) {
-                if (!scope.pickADate) {
-                  scope.pickADate = new Date(0);
+                var date = model.pickADate(scope);
+                if (!date) {
+                  date = new Date(0);
+                  model.pickADate.assign(scope, date);
                 }
-                scope.pickADate.setYear(select.obj.getFullYear());
-                scope.pickADate.setDate(select.obj.getDate());
-                scope.pickADate.setMonth(select.obj.getMonth());
+                date.setYear(select.obj.getFullYear());
+                date.setDate(select.obj.getDate());
+                date.setMonth(select.obj.getMonth());
               } else {
-                scope.pickADate = select;
+                model.pickADate.assign(scope, select);
               }
             });
           },
@@ -41,60 +44,66 @@
         element.pickadate(options);
         function updateValue(newValue) {
           if (newValue) {
-            scope.pickADate = (newValue instanceof Date) ? newValue : new Date(newValue);
-            element.pickadate('picker').set('select', scope.pickADate.getTime());
+            var date = (newValue instanceof Date) ? newValue : new Date(newValue);
+            element.pickadate('picker').set('select', date.getTime());
+            model.pickADate.assign(scope, date);
           } else {
             element.pickadate('picker').clear();
-            scope.pickADate = null;
+            model.pickADate.assign(scope, null);
           }
         }
 
-        updateValue(scope.pickADate);
-        element.pickadate('picker').set('min', scope.minDate ? scope.minDate : false);
-        element.pickadate('picker').set('max', scope.maxDate ? scope.maxDate : false);
-        scope.$watch('pickADate', function (newValue, oldValue) {
+        updateValue(model.pickADate(scope));
+        var minDate = model.minDate(scope);
+        var maxDate = model.maxDate(scope);
+        element.pickadate('picker').set('min', minDate ? minDate : false);
+        element.pickadate('picker').set('max', maxDate ? maxDate : false);
+        scope.$watch(attrs.pickADate, function (newValue, oldValue) {
           if (newValue === oldValue) {
             return;
           }
           updateValue(newValue);
         }, true);
-        scope.$watch('minDate', function (newValue) {
+        scope.$watch(attrs.minDate, function (newValue) {
           element.pickadate('picker').set('min', newValue ? newValue : false);
         }, true);
-        scope.$watch('maxDate', function (newValue) {
+        scope.$watch(attrs.maxDate, function (newValue) {
           element.pickadate('picker').set('max', newValue ? newValue : false);
         }, true);
       }
     };
   });
 
-  angular.module('pickadate').directive('pickATime', function () {
+  angular.module('pickadate').directive('pickATime', function ($parse) {
     return {
       restrict: 'A',
-      scope: {
-        pickATime: '=',
-        pickATimeOptions: '='
-      },
-      link: function (scope, element) {
-        var options = angular.extend(scope.pickATimeOptions || {}, {
+      link: function (scope, element, attrs) {
+        var model = {
+          pickATime: $parse(attrs.pickATime),
+          pickATimeOptions: $parse(attrs.pickATimeOptions)
+        };
+
+        var options = angular.extend(model.pickATimeOptions(scope) || {}, {
           onSet: function (e) {
             var select = element.pickatime('picker').get('select'); // selected date
 
             scope.$evalAsync(function () {
               if (e.hasOwnProperty('clear')) {
-                scope.pickATime = null;
+                model.pickATime.assign(scope, null);
                 return;
               }
               if (select) {
-                if (!scope.pickATime) {
-                  scope.pickATime = new Date(0);
+                var date = model.pickATime(scope);
+                if (!date) {
+                  date = new Date(0);
+                  model.pickATime.assign(scope, date);
                 }
-                scope.pickATime.setHours(select.hour);
-                scope.pickATime.setMinutes(select.mins);
-                scope.pickATime.setSeconds(0);
-                scope.pickATime.setMilliseconds(0);
+                date.setHours(select.hour);
+                date.setMinutes(select.mins);
+                date.setSeconds(0);
+                date.setMilliseconds(0);
               } else {
-                scope.pickATime = select;
+                model.pickATime.assign(scope, select);
               }
             });
           },
@@ -105,17 +114,18 @@
         element.pickatime(options);
         function updateValue(newValue) {
           if (newValue) {
-            scope.pickATime = (newValue instanceof Date) ? newValue : new Date(newValue);
-            var totalMins = scope.pickATime.getHours() * 60 + scope.pickATime.getMinutes();
+            var date = (newValue instanceof Date) ? newValue : new Date(newValue);
+            var totalMins = date.getHours() * 60 + date.getMinutes();
             element.pickatime('picker').set('select', totalMins);
+            model.pickATime.assign(scope, date);
           } else {
             element.pickatime('picker').clear();
-            scope.pickATime = null;
+            model.pickATime.assign(scope, null);
           }
         }
 
-        updateValue(scope.pickATime);
-        scope.$watch('pickATime', function (newValue, oldValue) {
+        updateValue(model.pickATime(scope));
+        scope.$watch(attrs.pickATime, function (newValue, oldValue) {
           if (newValue === oldValue) {
             return;
           }
