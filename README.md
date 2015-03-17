@@ -57,8 +57,15 @@ AngularJS directives for [pickadate.js by Amsul](http://amsul.ca/pickadate.js/).
 
 2. Use `pick-a-date` and `pick-a-time` directives.
 
-        <input type="text" pick-a-date="curDate"/>
-        <input type="text" pick-a-time="curDate"/>
+    ```html
+    <input type="text" pick-a-date="curDate"/>
+    <input type="text" pick-a-time="curTime"/>
+    ```
+    
+    ```js
+    $scope.curDate = new Date(); // Only the date part of curDate will be synced to pick-a-date directive
+    $scope.curTime = new Date(); // Only the time part of timeDate will be synced to pick-a-time directive
+    ```
 
 3. You can also provide additionnal `max-date` and `min-date` values.
 
