@@ -5,6 +5,8 @@ ng-pickadate
 
 AngularJS directives for [pickadate.js](http://amsul.ca/pickadate.js/).
 
+[http://toilal.github.io/ng-pickadate/](http://toilal.github.io/ng-pickadate/)
+
 ### Requirements
 
 - [AngularJS](https://angularjs.org/)
