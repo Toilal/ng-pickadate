@@ -11,5 +11,7 @@
       format: 'dd/mm/yy', selectYears: true
     };
 
+    $scope.validationDate = undefined;
+
   });
 })(angular);

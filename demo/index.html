@@ -68,6 +68,26 @@
   <pre><code class="js">$scope.optionsDate = new Date();
 $scope.options = { format: 'dd/mm/yy', selectYears: true };</code></pre>
 
+  <h4>Validation</h4>
+
+  <p>Validation works as any other text input. It must be included in a named form, and ng-model must be defined.</p>
+
+  <form name="validationForm">
+    <input type="text" name="validatedDateInput" pick-a-date="validatedDate" ng-model="validatedDateText" required>
+    <i> => validatedDate is {{validatedDate}}</i>
+    <div ng-show="validationForm.validatedDateInput.$error.required" style="color: red;">
+      <strong>Date is required.</strong>
+    </div>
+  </form>
+
+  <pre><code class="html">&lt;form name=&quot;validationForm&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;validatedDateInput&quot;
+    pick-a-date=&quot;validatedDate&quot; ng-model=&quot;validatedDateText&quot; required&gt;
+  &lt;div ng-show=&quot;validationForm.validatedDateInput.$error.required&quot; style=&quot;color: red;&quot;&gt;
+    &lt;strong&gt;Date is required.&lt;/strong&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+
   <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.js"></script>
 
