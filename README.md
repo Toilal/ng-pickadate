@@ -70,7 +70,7 @@ AngularJS directives for [pickadate.js by Amsul](http://amsul.ca/pickadate.js/).
                                  // is synced to pick-a-time directive
     ```
 
-3. You can also provide additionnal `max-date` and `min-date` values.
+3. You can also provide additional `max-date` and `min-date` values.
 
         <input type="text" pick-a-date="startDate" max-date="endDate"/>
         <input type="text" pick-a-date="endDate" min-date="startDate"/>
