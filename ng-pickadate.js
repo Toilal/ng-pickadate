@@ -18,22 +18,22 @@ angular.module('pickadate').directive('pickADate', function () {
                         return;
                     }
                     var select = element.pickadate('picker').get('select'); // selected date
-                    
-                    if(!select){
-                        return;
-                    }
-                    
+
                     scope.$apply(function () {
                         if (e.hasOwnProperty('clear')) {
                             scope.pickADate = null;
                             return;
                         }
-                        if (!scope.pickADate) {
-                            scope.pickADate = new Date(0);
+                        if (select) {
+                            if (!scope.pickADate) {
+                              scope.pickADate = new Date(0);
+                            }
+                            scope.pickADate.setYear(select.obj.getFullYear());
+                            scope.pickADate.setDate(select.obj.getDate());
+                            scope.pickADate.setMonth(select.obj.getMonth());
+                        } else {
+                          scope.pickADate = select;
                         }
-                        scope.pickADate.setYear(select.obj.getFullYear());
-                        scope.pickADate.setDate(select.obj.getDate());
-                        scope.pickADate.setMonth(select.obj.getMonth());
                     });
                 },
                 onClose: function () {
@@ -84,23 +84,23 @@ angular.module('pickadate').directive('pickATime', function () {
                         return;
                     }
                     var select = element.pickatime('picker').get('select'); // selected date
-                    
-                    if(!select){
-                        return;
-                    }
-                    
+
                     scope.$apply(function () {
                         if (e.hasOwnProperty('clear')) {
                             scope.pickATime = null;
                             return;
                         }
-                        if (!scope.pickATime) {
+                        if (select) {
+                          if (!scope.pickATime) {
                             scope.pickATime = new Date(0);
+                          }
+                          scope.pickATime.setHours(select.hour);
+                          scope.pickATime.setMinutes(select.mins);
+                          scope.pickATime.setSeconds(0);
+                          scope.pickATime.setMilliseconds(0);
+                        } else {
+                          scope.pickATime = select;
                         }
-                        scope.pickATime.setHours(select.hour);
-                        scope.pickATime.setMinutes(select.mins);
-                        scope.pickATime.setSeconds(0);
-                        scope.pickATime.setMilliseconds(0);
                     });
                 },
                 onClose: function () {
