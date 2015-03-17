@@ -1,6 +1,7 @@
 ng-pickadate
 ============
 
+[![bower version](http://img.shields.io/bower/v/ng-pickadate.svg?style=flat)](https://github.com/Toilal/ng-pickadate) 
 [![npm version](http://img.shields.io/npm/v/ng-pickadate.svg?style=flat)](https://npmjs.org/package/ng-pickadate) 
 
 AngularJS directives for [pickadate.js](http://amsul.ca/pickadate.js/).
