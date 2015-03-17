@@ -1,0 +1,54 @@
+<html class="no-js" ng-app="DemoApp">
+<head>
+  <meta charset="utf-8">
+  <title>ng-pickadate - AngularJS pickadate.js wrapper</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+
+  <link rel="stylesheet" href="lib/css/default.css" />
+  <link rel="stylesheet" href="lib/css/default.date.css" />
+  <link rel="stylesheet" href="lib/css/default.time.css" />
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+  <!-- endbower -->
+  <!-- endbuild -->
+</head>
+<body layout="row" ng-controller="DemoAppCtrl">
+
+<h1>ng-pickadate - AngularJS pickadate.js wrapper</h1>
+
+<h2>Date Picker</h2>
+
+<pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;curDate&quot;&gt;</code></pre>
+<pre><code class="js">$scope.curDate = new Date();</code></pre>
+
+<input type="text" pick-a-date="curDate">
+
+<p>$scope.curDate is {{curDate}}</p>
+
+<h2>Time Picker</h2>
+
+<h3>HTML</h3>
+<pre><code class="html">&lt;input type=&quot;text&quot; pick-a-time=&quot;curTime&quot;&gt;</code></pre>
+<pre><code class="js">$scope.curTime = new Date();</code></pre>
+
+<input type="text" pick-a-time="curTime">
+
+<p>$scope.curTime is {{curTime}}</p>
+
+<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="lib/js/picker.js"></script>
+<script src="lib/js/picker.date.js"></script>
+<script src="lib/js/picker.time.js"></script>
+
+<script src="../ng-pickadate.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
