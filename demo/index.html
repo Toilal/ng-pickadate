@@ -20,27 +20,33 @@
 
   <h2>AngularJS directives for <a href="http://amsul.ca/pickadate.js/">pickadate.js by Amsul</a>.</h2>
 
-  <h3>Date Picker</h3>
+  <h2>Date Picker</h2>
 
-  <strong>pick-a-date</strong> is the Date Picker directive.
+  <p><strong>pick-a-date</strong> is the Date Picker directive.</p>
+
+  <p>Pick a date: <input type="text" pick-a-date="curDate"> <i> => curDate is {{curDate}}</i></p>
 
   <pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;curDate&quot;&gt;</code></pre>
   <pre><code class="js">$scope.curDate = new Date();</code></pre>
 
-  <input type="text" pick-a-date="curDate">
+  <h2>Time Picker</h2>
 
-  <p>$scope.curDate is {{curDate}}</p>
+  <p><strong>pick-a-time</strong> is the Time Picker directive.</p>
 
-  <h3>Time Picker</h3>
-
-  <strong>pick-a-time</strong> is the Time Picker directive.
+  <p>Pick a time: <input type="text" pick-a-time="curTime"> <i> => curTime is {{curTime}}</i></p>
 
   <pre><code class="html">&lt;input type=&quot;text&quot; pick-a-time=&quot;curTime&quot;&gt;</code></pre>
   <pre><code class="js">$scope.curTime = new Date();</code></pre>
 
-  <input type="text" pick-a-time="curTime">
+  <h3>Install</h3>
 
-  <p>$scope.curTime is {{curTime}}</p>
+  <p>With Bower</p>
+
+  <pre><code class="bash">bower install ng-pickadate</code></pre>
+
+  <p>Or NPM</p>
+
+  <pre><code class="bash">npm install ng-pickadate</code></pre>
 
   <h3>Others</h3>
 
@@ -49,20 +55,18 @@
   You can provide additional <strong>max-date</strong> and <strong>min-date</strong> values.
 
   <pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;startDate&quot; max-date=&quot;endDate&quot;/&gt;
-  &lt;input type=&quot;text&quot; pick-a-date=&quot;endDate&quot; min-date=&quot;startDate&quot;/&gt;</code></pre>
+&lt;input type=&quot;text&quot; pick-a-date=&quot;endDate&quot; min-date=&quot;startDate&quot;/&gt;</code></pre>
 
   <h4>Pickadate options</h4>
 
-  You can define [pickadate.js](http://amsul.ca/pickadate.js/) options through <strong>pick-a-date-options</strong> and
+  You can define <a href="http://amsul.ca/pickadate.js/">pickadate.js</a> options through <strong>pick-a-date-options</strong> and
   <strong>pick-a-time-options</strong> directives as well.
+
+  <p>Pick a date: <input type="text" pick-a-date="optionsDate" pick-a-date-options="options"> <i> => optionsDate is {{optionsDate}}</i></p>
 
   <pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;optionsDate&quot; pick-a-date-options=&quot;options&quot; /&gt;</code></pre>
   <pre><code class="js">$scope.optionsDate = new Date();
-  $scope.options = { format: 'dd/mm/yy', selectYears: true };</code></pre>
-
-  <input type="text" pick-a-date="optionsDate" pick-a-date-options="options">
-
-  <p>$scope.optionsDate is {{optionsDate}}</p>
+$scope.options = { format: 'dd/mm/yy', selectYears: true };</code></pre>
 
   <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.js"></script>
