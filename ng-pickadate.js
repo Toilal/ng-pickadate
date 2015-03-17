@@ -3,7 +3,7 @@
 
   angular.module('pickadate', []);
 
-  angular.module('pickadate').directive('pickADate',  function ($parse) {
+  angular.module('pickadate').directive('pickADate', function ($parse) {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
@@ -14,33 +14,42 @@
           pickADateOptions: $parse(attrs.pickADateOptions)
         };
 
-        var options = angular.extend(model.pickADateOptions(scope) || {}, {
-          onSet: function (e) {
-            var select = element.pickadate('picker').get('select'); // selected date
+        var userOptions = model.pickADateOptions(scope) || {};
+        var options = angular.extend({}, userOptions);
 
-            scope.$evalAsync(function () {
-              if (e.hasOwnProperty('clear')) {
-                model.pickADate.assign(scope, null);
-                return;
-              }
-              if (select) {
-                var date = model.pickADate(scope);
-                if (!date) {
-                  date = new Date(0);
-                  model.pickADate.assign(scope, date);
-                }
-                date.setYear(select.obj.getFullYear());
-                date.setDate(select.obj.getDate());
-                date.setMonth(select.obj.getMonth());
-              } else {
-                model.pickADate.assign(scope, select);
-              }
-            });
-          },
-          onClose: function () {
-            element.blur();
+        options.onSet = function (e) {
+          if (userOptions && userOptions.onSet) {
+            userOptions.onSet.apply(this, arguments);
           }
-        });
+          var select = element.pickadate('picker').get('select'); // selected date
+
+          scope.$evalAsync(function () {
+            if (e.hasOwnProperty('clear')) {
+              model.pickADate.assign(scope, null);
+              return;
+            }
+            if (select) {
+              var date = model.pickADate(scope);
+              if (!date) {
+                date = new Date(0);
+                model.pickADate.assign(scope, date);
+              }
+              date.setYear(select.obj.getFullYear());
+              date.setDate(select.obj.getDate());
+              date.setMonth(select.obj.getMonth());
+            } else {
+              model.pickADate.assign(scope, select);
+            }
+          });
+        };
+
+        options.onClose = function () {
+          if (userOptions && userOptions.onClose) {
+            userOptions.onClose.apply(this, arguments);
+          }
+          element.blur();
+        };
+
         element.pickadate(options);
         function updateValue(newValue) {
           if (newValue) {
@@ -83,34 +92,43 @@
           pickATimeOptions: $parse(attrs.pickATimeOptions)
         };
 
-        var options = angular.extend(model.pickATimeOptions(scope) || {}, {
-          onSet: function (e) {
-            var select = element.pickatime('picker').get('select'); // selected date
+        var userOptions = model.pickATimeOptions(scope) || {};
+        var options = angular.extend({}, userOptions);
 
-            scope.$evalAsync(function () {
-              if (e.hasOwnProperty('clear')) {
-                model.pickATime.assign(scope, null);
-                return;
-              }
-              if (select) {
-                var date = model.pickATime(scope);
-                if (!date) {
-                  date = new Date(0);
-                  model.pickATime.assign(scope, date);
-                }
-                date.setHours(select.hour);
-                date.setMinutes(select.mins);
-                date.setSeconds(0);
-                date.setMilliseconds(0);
-              } else {
-                model.pickATime.assign(scope, select);
-              }
-            });
-          },
-          onClose: function () {
-            element.blur();
+        options.onSet = function (e) {
+          if (userOptions && userOptions.onSet) {
+            userOptions.onSet.apply(this, arguments);
           }
-        });
+          var select = element.pickatime('picker').get('select'); // selected date
+
+          scope.$evalAsync(function () {
+            if (e.hasOwnProperty('clear')) {
+              model.pickATime.assign(scope, null);
+              return;
+            }
+            if (select) {
+              var date = model.pickATime(scope);
+              if (!date) {
+                date = new Date(0);
+                model.pickATime.assign(scope, date);
+              }
+              date.setHours(select.hour);
+              date.setMinutes(select.mins);
+              date.setSeconds(0);
+              date.setMilliseconds(0);
+            } else {
+              model.pickATime.assign(scope, select);
+            }
+          });
+        };
+
+        options.onClose = function () {
+          if (userOptions && userOptions.onClose) {
+            userOptions.onClose.apply(this, arguments);
+          }
+          element.blur();
+        };
+
         element.pickatime(options);
         function updateValue(newValue) {
           if (newValue) {
