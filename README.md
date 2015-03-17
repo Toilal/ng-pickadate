@@ -3,7 +3,7 @@ ng-pickadate
 
 [![npm version](http://img.shields.io/npm/v/ng-pickadate.svg?style=flat)](https://npmjs.org/package/ng-pickadate) 
 
-AngularJS directives for [pickadate.js by Amsul](http://amsul.ca/pickadate.js/).
+AngularJS directives for [pickadate.js](http://amsul.ca/pickadate.js/).
 
 ### Requirements
 
