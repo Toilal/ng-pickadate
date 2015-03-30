@@ -3,7 +3,7 @@
 
   angular.module('pickadate', []);
 
-  angular.module('pickadate').directive('pickADate', function ($parse) {
+  angular.module('pickadate').directive('pickADate', ['$parse', function ($parse) {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
@@ -81,9 +81,9 @@
         }, true);
       }
     };
-  });
+  }]);
 
-  angular.module('pickadate').directive('pickATime', function ($parse) {
+  angular.module('pickadate').directive('pickATime', ['$parse',function ($parse) {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
@@ -151,6 +151,6 @@
         }, true);
       }
     };
-  });
+  }]);
 })(angular);
 
