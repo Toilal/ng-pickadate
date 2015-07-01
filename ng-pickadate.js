@@ -67,17 +67,20 @@
         var maxDate = model.maxDate(scope);
         element.pickadate('picker').set('min', minDate ? minDate : false);
         element.pickadate('picker').set('max', maxDate ? maxDate : false);
-        scope.$watch(attrs.pickADate, function (newValue, oldValue) {
-          if (newValue === oldValue) {
-            return;
+
+        scope.$watchGroup([attrs.pickADate, attrs.minDate, attrs.maxDate], function(newValues, oldValues) {
+          var newValue = newValues[0], newMin = newValues[1], newMax = newValues[2],
+              oldValue = oldValues[0], oldMin = oldValues[1], oldMax = oldValues[2];
+
+          if (newMin !== oldMin) {
+            element.pickadate('picker').set('min', newValues[1] ? newValues[1] : false);
           }
-          updateValue(newValue);
-        }, true);
-        scope.$watch(attrs.minDate, function (newValue) {
-          element.pickadate('picker').set('min', newValue ? newValue : false);
-        }, true);
-        scope.$watch(attrs.maxDate, function (newValue) {
-          element.pickadate('picker').set('max', newValue ? newValue : false);
+          if (newMax !== oldMax) {
+            element.pickadate('picker').set('max', newValues[2] ? newValues[2] : false);
+          }
+          if (newValue !== oldValue) {
+            updateValue(newValues[0]);
+          }
         }, true);
       }
     };
