@@ -18,10 +18,9 @@
         var options = angular.extend({}, userOptions);
 
         options.onSet = function (e) {
-          if (userOptions && userOptions.onSet) {
-            userOptions.onSet.apply(this, arguments);
-          }
-          var select = element.pickadate('picker').get('select'); // selected date
+          var that = this,
+              args = arguments,
+              select = element.pickadate('picker').get('select'); // selected date
 
           scope.$evalAsync(function () {
             if (e.hasOwnProperty('clear')) {
@@ -39,6 +38,9 @@
               date.setMonth(select.obj.getMonth());
             } else {
               model.pickADate.assign(scope, select);
+            }
+            if (userOptions && userOptions.onSet) {
+              userOptions.onSet.apply(that, args);
             }
           });
         };
@@ -99,10 +101,9 @@
         var options = angular.extend({}, userOptions);
 
         options.onSet = function (e) {
-          if (userOptions && userOptions.onSet) {
-            userOptions.onSet.apply(this, arguments);
-          }
-          var select = element.pickatime('picker').get('select'); // selected date
+          var that = this,
+              args = arguments,
+              select = element.pickatime('picker').get('select'); // selected date
 
           scope.$evalAsync(function () {
             if (e.hasOwnProperty('clear')) {
@@ -121,6 +122,9 @@
               date.setMilliseconds(0);
             } else {
               model.pickATime.assign(scope, select);
+            }
+            if (userOptions && userOptions.onSet) {
+              userOptions.onSet.apply(that, args);
             }
           });
         };
