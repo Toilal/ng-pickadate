@@ -1,17 +1,21 @@
 {
-    "non-interactive": false,
-    "dry-run": false,
-    "verbose": true,
-    "force": false,
-    "pkgFiles": ["package.json", "bower.json"],
-    "increment": "patch",
-    "commitMessage": "Release v%s",
-    "tagName": "v%s",
-    "tagAnnotation": "v%s",
-    "distRepo": false,
-    "distStageDir": ".stage",
-    "distBase": "dist",
-    "distFiles": ["**/*"],
-    "publish": true,
+  "non-interactive": false,
+  "dry-run": false,
+  "verbose": true,
+  "force": false,
+  "pkgFiles": ["package.json", "bower.json"],
+  "increment": "patch",
+  "commitMessage": "Release v%s",
+  "tagName": "v%s",
+  "tagAnnotation": "v%s",
+  "dist": {
+    "repo": false,
+    "stageDir": ".stage",
+    "base": "dist",
+    "files": ["**/*"]
+  },
+  "npm": {
+    "publish": false,
     "publishPath": "."
+  }
 }
