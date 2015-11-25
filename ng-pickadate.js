@@ -33,9 +33,7 @@
                 date = new Date(0);
                 model.pickADate.assign(scope, date);
               }
-              date.setYear(select.obj.getFullYear());
-              date.setMonth(select.obj.getMonth());
-              date.setDate(select.obj.getDate());
+              date.setFullYear(select.obj.getFullYear(), select.obj.getMonth(), select.obj.getDate());
             } else {
               model.pickADate.assign(scope, select);
             }
