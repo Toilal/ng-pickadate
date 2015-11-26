@@ -85,6 +85,22 @@ You can define [pickadate.js](http://amsul.ca/pickadate.js/) options through `pi
 
     <input type="text" pick-a-date="curDate" pick-a-date-options="{ format: 'dd/mm/yy', selectYears: true }" />
 
+If you find yourself setting the same options for multiple date pickers, you can set them as the default options for all date pickers by configuring `pickADateProvider` and `pickATimeProvider`.
+
+  ```js
+  angular.module('yourApp', ['pickadate'])
+    .config(['pickADateProvider', 'pickATimeProvider', function (pickADateProvider, pickATimeProvider) {
+      pickADateProvider.setOptions({
+        format: 'dd/mm/yy',
+        selectYears: true
+      });
+
+      pickATimeProvider.setOptions({
+        today: ''
+      });
+    }]);
+  ```
+
 ### Credits
 
 This project is initially based on a [blog post from Coding Insight](http://www.codinginsight.com/angularjs-and-pickadate/)
