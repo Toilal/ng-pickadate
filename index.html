@@ -14,93 +14,99 @@
 </head>
 <body layout="row" ng-controller="DemoAppCtrl">
 
-  <a href="https://github.com/Toilal/ng-pickadate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+<a href="https://github.com/Toilal/ng-pickadate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
 
-  <h1>ng-pickadate - AngularJS pickadate.js wrapper</h1>
+<h1>ng-pickadate - AngularJS pickadate.js wrapper</h1>
 
-  <h2>AngularJS directives for <a href="http://amsul.ca/pickadate.js/">pickadate.js</a>.</h2>
+<h2>AngularJS directives for <a href="http://amsul.ca/pickadate.js/">pickadate.js</a>.</h2>
 
-  <h2>Date Picker</h2>
+<h2>Date Picker</h2>
 
-  <p><strong>pick-a-date</strong> is the Date Picker directive.</p>
+<p><strong>pick-a-date</strong> is the Date Picker directive.</p>
 
-  <p>Pick a date: <input type="text" pick-a-date="curDate"> <i> => curDate is {{curDate}}</i></p>
+<p>Pick a date: <input type="text" pick-a-date="curDate"> <i> => curDate is {{curDate}}</i></p>
 
-  <pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;curDate&quot;&gt;</code></pre>
-  <pre><code class="js">$scope.curDate = new Date();</code></pre>
+<pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;curDate&quot;&gt;</code></pre>
+<pre><code class="js">$scope.curDate = new Date();</code></pre>
 
-  <h2>Time Picker</h2>
+<h2>Time Picker</h2>
 
-  <p><strong>pick-a-time</strong> is the Time Picker directive.</p>
+<p><strong>pick-a-time</strong> is the Time Picker directive.</p>
 
-  <p>Pick a time: <input type="text" pick-a-time="curTime"> <i> => curTime is {{curTime}}</i></p>
+<p>Pick a time: <input type="text" pick-a-time="curTime"> <i> => curTime is {{curTime}}</i></p>
 
-  <pre><code class="html">&lt;input type=&quot;text&quot; pick-a-time=&quot;curTime&quot;&gt;</code></pre>
-  <pre><code class="js">$scope.curTime = new Date();</code></pre>
+<pre><code class="html">&lt;input type=&quot;text&quot; pick-a-time=&quot;curTime&quot;&gt;</code></pre>
+<pre><code class="js">$scope.curTime = new Date();</code></pre>
 
-  <h3>Install</h3>
+<h3>Install</h3>
 
-  <p>With Bower</p>
+<p>With Bower</p>
 
-  <pre><code class="bash">bower install ng-pickadate</code></pre>
+<pre><code class="bash">bower install ng-pickadate</code></pre>
 
-  <p>Or NPM</p>
+<p>Or NPM</p>
 
-  <pre><code class="bash">npm install ng-pickadate</code></pre>
+<pre><code class="bash">npm install ng-pickadate</code></pre>
 
-  <h3>Others</h3>
+<h3>Others</h3>
 
-  <h4>Minimum and Maximum</h4>
+<h4>Minimum and Maximum</h4>
 
-  You can provide additional <strong>max-date</strong> and <strong>min-date</strong> values.
+You can provide additional <strong>max-date</strong> and <strong>min-date</strong> values.
 
   <pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;startDate&quot; max-date=&quot;endDate&quot;/&gt;
-&lt;input type=&quot;text&quot; pick-a-date=&quot;endDate&quot; min-date=&quot;startDate&quot;/&gt;</code></pre>
+    &lt;input type=&quot;text&quot; pick-a-date=&quot;endDate&quot; min-date=&quot;startDate&quot;/&gt;</code></pre>
 
-  <h4>Pickadate options</h4>
+<h4>Pickadate options</h4>
 
-  You can define <a href="http://amsul.ca/pickadate.js/">pickadate.js</a> options through <strong>pick-a-date-options</strong> and
-  <strong>pick-a-time-options</strong> directives as well.
+You can define <a href="http://amsul.ca/pickadate.js/">pickadate.js</a> options through <strong>pick-a-date-options</strong> and
+<strong>pick-a-time-options</strong> directives as well.
 
-  <p>Pick a date: <input type="text" pick-a-date="optionsDate" pick-a-date-options="options"> <i> => optionsDate is {{optionsDate}}</i></p>
+<p>Pick a date: <input type="text" pick-a-date="optionsDate" pick-a-date-options="options"> <i> => optionsDate is {{optionsDate}}</i></p>
 
-  <pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;optionsDate&quot; pick-a-date-options=&quot;options&quot; /&gt;</code></pre>
+<pre><code class="html">&lt;input type=&quot;text&quot; pick-a-date=&quot;optionsDate&quot; pick-a-date-options=&quot;options&quot; /&gt;</code></pre>
   <pre><code class="js">$scope.optionsDate = new Date();
-$scope.options = { format: 'dd/mm/yy', selectYears: true };</code></pre>
+    $scope.options = { format: 'dd/mm/yy', selectYears: true };</code></pre>
 
-  <h4>Validation</h4>
+<h4>Validation</h4>
 
-  <p>Validation works as any other text input. It must be included in a named form, and ng-model must be defined.</p>
+<p>Validation works as any other text input. It must be included in a named form, and ng-model must be defined.</p>
 
-  <form name="validationForm">
-    <input type="text" name="validatedDateInput" pick-a-date="validatedDate" ng-model="validatedDateText" required>
-    <i> => validatedDate is {{validatedDate}}</i>
-    <div ng-show="validationForm.validatedDateInput.$error.required" style="color: red;">
-      <strong>Date is required.</strong>
-    </div>
-  </form>
+<form name="validationForm">
+  <input type="text" name="validatedDateInput" pick-a-date="validatedDate" ng-model="validatedDateText" required>
+  <i> => validatedDate is {{validatedDate}}</i>
+  <div ng-show="validationForm.validatedDateInput.$error.required" style="color: red;">
+    <strong>Date is required.</strong>
+  </div>
+  <div>
+    <span><i>$touched: {{validationForm.validatedDateInput.$touched}}</i>, </span>
+    <span><i>$pristine: {{validationForm.validatedDateInput.$pristine}}</i>, </span>
+    <span><i>$dirty: {{validationForm.validatedDateInput.$dirty}}</i>, </span>
+    <span><i>$valid: {{validationForm.validatedDateInput.$valid}}</i></span>
+  </div>
+</form>
 
   <pre><code class="html">&lt;form name=&quot;validationForm&quot;&gt;
-  &lt;input type=&quot;text&quot; name=&quot;validatedDateInput&quot;
+    &lt;input type=&quot;text&quot; name=&quot;validatedDateInput&quot;
     pick-a-date=&quot;validatedDate&quot; ng-model=&quot;validatedDateText&quot; required&gt;
-  &lt;div ng-show=&quot;validationForm.validatedDateInput.$error.required&quot; style=&quot;color: red;&quot;&gt;
+    &lt;div ng-show=&quot;validationForm.validatedDateInput.$error.required&quot; style=&quot;color: red;&quot;&gt;
     &lt;strong&gt;Date is required.&lt;/strong&gt;
-  &lt;/div&gt;
-&lt;/form&gt;</code></pre>
+    &lt;/div&gt;
+    &lt;/form&gt;</code></pre>
 
-  <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
-  <script src="lib/js/picker.js"></script>
-  <script src="lib/js/picker.date.js"></script>
-  <script src="lib/js/picker.time.js"></script>
+<script src="lib/js/picker.js"></script>
+<script src="lib/js/picker.date.js"></script>
+<script src="lib/js/picker.time.js"></script>
 
-  <script src="ng-pickadate.js"></script>
+<script src="ng-pickadate.js"></script>
 
-  <script src="app.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>

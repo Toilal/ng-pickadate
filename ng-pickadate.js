@@ -3,10 +3,16 @@
 
   angular.module('pickadate', []);
 
-  angular.module('pickadate').directive('pickADate', ['$parse', function ($parse) {
+  angular.module('pickadate').provider('pickADate', pickADateProvider);
+
+  angular.module('pickadate').provider('pickATime', pickATimeProvider);
+
+  angular.module('pickadate').directive('pickADate', ['$parse', 'pickADate', function ($parse, pickADate) {
     return {
       restrict: 'A',
-      link: function (scope, element, attrs) {
+      require: '?ngModel',
+      link: function (scope, element, attrs, ngModel) {
+        var hasOnOpenRun = false;
         var model = {
           pickADate: $parse(attrs.pickADate),
           minDate: $parse(attrs.minDate),
@@ -14,8 +20,9 @@
           pickADateOptions: $parse(attrs.pickADateOptions)
         };
 
+        var defaultOptions = pickADate.getOptions() || {};
         var userOptions = model.pickADateOptions(scope) || {};
-        var options = angular.extend({}, userOptions);
+        var options = angular.extend({}, defaultOptions, userOptions);
 
         options.onSet = function (e) {
           var that = this,
@@ -33,21 +40,47 @@
                 date = new Date(0);
                 model.pickADate.assign(scope, date);
               }
-              date.setYear(select.obj.getFullYear());
-              date.setDate(select.obj.getDate());
-              date.setMonth(select.obj.getMonth());
+              date.setFullYear(select.obj.getFullYear(), select.obj.getMonth(), select.obj.getDate());
             } else {
               model.pickADate.assign(scope, select);
             }
             if (userOptions && userOptions.onSet) {
               userOptions.onSet.apply(that, args);
             }
+            if (defaultOptions && defaultOptions.onSet) {
+              defaultOptions.onSet.apply(that, args);
+            }
           });
         };
 
+        options.onOpen = function (e) {
+          if (ngModel) {
+            if (!hasOnOpenRun) {
+              hasOnOpenRun = true;
+              scope.$apply(function () {
+                ngModel.$setUntouched();
+              });
+            }
+          }
+          if (userOptions && userOptions.onOpen) {
+            userOptions.onOpen.apply(this, arguments);
+          }
+          if (defaultOptions && defaultOptions.onOpen) {
+            defaultOptions.onOpen.apply(this, arguments);
+          }
+        };
+
         options.onClose = function () {
+          if (ngModel) {
+            scope.$applyAsync(function () {
+              ngModel.$setTouched();
+            });
+          }
           if (userOptions && userOptions.onClose) {
             userOptions.onClose.apply(this, arguments);
+          }
+          if (defaultOptions && defaultOptions.onClose) {
+            defaultOptions.onClose.apply(this, arguments);
           }
           element.blur();
         };
@@ -84,21 +117,28 @@
             updateValue(newValues[0]);
           }
         }, true);
+
+        if (ngModel) {
+          ngModel.$setPristine();
+        }
       }
     };
   }]);
 
-  angular.module('pickadate').directive('pickATime', ['$parse',function ($parse) {
+  angular.module('pickadate').directive('pickATime', ['$parse', 'pickATime', function ($parse, pickATime) {
     return {
       restrict: 'A',
-      link: function (scope, element, attrs) {
+      require: '?ngModel',
+      link: function (scope, element, attrs, ngModel) {
+        var hasOnOpenRun = false;
         var model = {
           pickATime: $parse(attrs.pickATime),
           pickATimeOptions: $parse(attrs.pickATimeOptions)
         };
 
+        var defaultOptions = pickATime.getOptions() || {};
         var userOptions = model.pickATimeOptions(scope) || {};
-        var options = angular.extend({}, userOptions);
+        var options = angular.extend({}, defaultOptions, userOptions);
 
         options.onSet = function (e) {
           var that = this,
@@ -126,12 +166,40 @@
             if (userOptions && userOptions.onSet) {
               userOptions.onSet.apply(that, args);
             }
+            if (defaultOptions && defaultOptions.onSet) {
+              defaultOptions.onSet.apply(that, args);
+            }
           });
         };
 
+        options.onOpen = function () {
+          if (ngModel) {
+            if (!hasOnOpenRun) {
+              hasOnOpenRun = true;
+              scope.$apply(function () {
+                ngModel.$setUntouched();
+              });
+            }
+          }
+          if (userOptions && userOptions.onOpen) {
+            userOptions.onOpen.apply(this, arguments);
+          }
+          if (defaultOptions && defaultOptions.onOpen) {
+            defaultOptions.onOpen.apply(this, arguments);
+          }
+        };
+
         options.onClose = function () {
+          if (ngModel) {
+            scope.$applyAsync(function () {
+              ngModel.$setTouched();
+            });
+          }
           if (userOptions && userOptions.onClose) {
             userOptions.onClose.apply(this, arguments);
+          }
+          if (defaultOptions && defaultOptions.onClose) {
+            defaultOptions.onClose.apply(this, arguments);
           }
           element.blur();
         };
@@ -156,8 +224,77 @@
           }
           updateValue(newValue);
         }, true);
+
+        if (ngModel) {
+          ngModel.$setPristine();
+        }
       }
     };
   }]);
-})(angular);
 
+  function pickADateProvider() {
+    var config;
+    this.setOptions = function (options) {
+      if (config) {
+        throw new Error("Already configured.");
+      }
+      if (!(options instanceof Object)) {
+        throw new TypeError("Invalid argument: `config` must be an `Object`.");
+      }
+      config = angular.extend({}, options);
+      return config;
+    };
+    this.$get = function () {
+      var PickADate = function () {
+        function PickADate() {}
+
+        Object.defineProperties(PickADate.prototype, {
+          getOptions: {
+            value: function getOptions() {
+              return angular.copy(config);
+            },
+            writable: true,
+            enumerable: true,
+            configurable: true
+          },
+        });
+        return PickADate;
+      }();
+      return new PickADate();
+    };
+    this.$get.$inject = [];
+  }
+
+  function pickATimeProvider() {
+    var config;
+    this.setOptions = function (options) {
+      if (config) {
+        throw new Error("Already configured.");
+      }
+      if (!(options instanceof Object)) {
+        throw new TypeError("Invalid argument: `config` must be an `Object`.");
+      }
+      config = angular.extend({}, options);
+      return config;
+    };
+    this.$get = function () {
+      var PickATime = function () {
+        function PickATime() {}
+
+        Object.defineProperties(PickATime.prototype, {
+          getOptions: {
+            value: function getOptions() {
+              return angular.copy(config);
+            },
+            writable: true,
+            enumerable: true,
+            configurable: true
+          },
+        });
+        return PickATime;
+      }();
+      return new PickATime();
+    };
+    this.$get.$inject = [];
+  }
+})(angular);
