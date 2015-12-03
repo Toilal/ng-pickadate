@@ -1,7 +1,7 @@
 {
   "name": "ng-pickadate",
   "description": "AngularJS directives for pickadate.js",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "authors": [
     "Rémi Alvergnat <toilal.dev@gmail.com> (http://www.pragmasphere.com)"
   ],
