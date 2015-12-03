@@ -10,7 +10,9 @@
   angular.module('pickadate').directive('pickADate', ['$parse', 'pickADate', function ($parse, pickADate) {
     return {
       restrict: 'A',
-      link: function (scope, element, attrs) {
+      require: '?ngModel',
+      link: function (scope, element, attrs, ngModel) {
+        var hasOnOpenRun = false;
         var model = {
           pickADate: $parse(attrs.pickADate),
           minDate: $parse(attrs.minDate),
@@ -51,12 +53,34 @@
           });
         };
 
+        options.onOpen = function (e) {
+          if (ngModel) {
+            if (!hasOnOpenRun) {
+              hasOnOpenRun = true;
+              scope.$apply(function () {
+                ngModel.$setUntouched();
+              });
+            }
+          }
+          if (userOptions && userOptions.onOpen) {
+            userOptions.onOpen.apply(this, arguments);
+          }
+          if (defaultOptions && defaultOptions.onOpen) {
+            defaultOptions.onOpen.apply(this, arguments);
+          }
+        };
+
         options.onClose = function () {
+          if (ngModel) {
+            scope.$applyAsync(function () {
+              ngModel.$setTouched();
+            });
+          }
           if (userOptions && userOptions.onClose) {
             userOptions.onClose.apply(this, arguments);
           }
           if (defaultOptions && defaultOptions.onClose) {
-            defaultOptions.onClose.apply(that, args);
+            defaultOptions.onClose.apply(this, arguments);
           }
           element.blur();
         };
@@ -93,6 +117,10 @@
             updateValue(newValues[0]);
           }
         }, true);
+
+        if (ngModel) {
+          ngModel.$setPristine();
+        }
       }
     };
   }]);
@@ -100,7 +128,9 @@
   angular.module('pickadate').directive('pickATime', ['$parse', 'pickATime', function ($parse, pickATime) {
     return {
       restrict: 'A',
-      link: function (scope, element, attrs) {
+      require: '?ngModel',
+      link: function (scope, element, attrs, ngModel) {
+        var hasOnOpenRun = false;
         var model = {
           pickATime: $parse(attrs.pickATime),
           pickATimeOptions: $parse(attrs.pickATimeOptions)
@@ -142,12 +172,34 @@
           });
         };
 
+        options.onOpen = function () {
+          if (ngModel) {
+            if (!hasOnOpenRun) {
+              hasOnOpenRun = true;
+              scope.$apply(function () {
+                ngModel.$setUntouched();
+              });
+            }
+          }
+          if (userOptions && userOptions.onOpen) {
+            userOptions.onOpen.apply(this, arguments);
+          }
+          if (defaultOptions && defaultOptions.onOpen) {
+            defaultOptions.onOpen.apply(this, arguments);
+          }
+        };
+
         options.onClose = function () {
+          if (ngModel) {
+            scope.$applyAsync(function () {
+              ngModel.$setTouched();
+            });
+          }
           if (userOptions && userOptions.onClose) {
             userOptions.onClose.apply(this, arguments);
           }
           if (defaultOptions && defaultOptions.onClose) {
-            defaultOptions.onClose.apply(that, args);
+            defaultOptions.onClose.apply(this, arguments);
           }
           element.blur();
         };
@@ -172,6 +224,10 @@
           }
           updateValue(newValue);
         }, true);
+
+        if (ngModel) {
+          ngModel.$setPristine();
+        }
       }
     };
   }]);
@@ -242,4 +298,3 @@
     this.$get.$inject = [];
   }
 })(angular);
-

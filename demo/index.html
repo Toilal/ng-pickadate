@@ -78,6 +78,12 @@ $scope.options = { format: 'dd/mm/yy', selectYears: true };</code></pre>
     <div ng-show="validationForm.validatedDateInput.$error.required" style="color: red;">
       <strong>Date is required.</strong>
     </div>
+    <div>
+      <span><i>$touched: {{validationForm.validatedDateInput.$touched}}</i>, </span>
+      <span><i>$pristine: {{validationForm.validatedDateInput.$pristine}}</i>, </span>
+      <span><i>$dirty: {{validationForm.validatedDateInput.$dirty}}</i>, </span>
+      <span><i>$valid: {{validationForm.validatedDateInput.$valid}}</i></span>
+    </div>
   </form>
 
   <pre><code class="html">&lt;form name=&quot;validationForm&quot;&gt;
