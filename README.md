@@ -3,7 +3,7 @@ ng-pickadate
 
 [![bower version](http://img.shields.io/bower/v/ng-pickadate.svg?style=flat)](https://github.com/Toilal/ng-pickadate) 
 [![npm version](http://img.shields.io/npm/v/ng-pickadate.svg?style=flat)](https://npmjs.org/package/ng-pickadate) 
-[HuBoard](https://huboard.com/Toilal/ng-pickadate)
+[![HuBoard](https://img.shields.io/badge/Hu-Board-7965cc.svg)](https://huboard.com/Toilal/ng-pickadate) 
 
 AngularJS directives for [pickadate.js](http://amsul.ca/pickadate.js/).
 
