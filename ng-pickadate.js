@@ -225,6 +225,20 @@
           updateValue(newValue);
         }, true);
 
+        function updateOptions(newValue) {
+          if (typeof newValue === "object") {
+            element.pickatime('picker').set(newValue)
+          }
+        }
+
+        scope.$watch(attrs.pickATimeOptions, function (newValue, oldValue) {
+          if (newValue === oldValue) {
+            return;
+          }
+          updateOptions(newValue)
+        }, true);
+
+
         if (ngModel) {
           ngModel.$setPristine();
         }
