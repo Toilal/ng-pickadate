@@ -121,6 +121,19 @@
         if (ngModel) {
           ngModel.$setPristine();
         }
+
+        function updateOptions(newValue) {
+          if (typeof newValue === "object") {
+            element.pickadate('picker').set(newValue)
+          }
+        }
+
+        scope.$watch(attrs.pickADateOptions, function (newValue, oldValue) {
+          if (newValue === oldValue) {
+            return;
+          }
+          updateOptions(newValue)
+        }, true);
       }
     };
   }]);
