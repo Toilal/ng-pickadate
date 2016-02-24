@@ -17,8 +17,16 @@
     "datepicker",
     "angularjs"
   ],
+  "scripts": {
+    "serve": "gulp serve"
+  },
   "dependencies": {
     "angular": "~1.4.5",
     "pickadate": "~3.5.6"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "serve-static": "^1.10.2"
   }
 }
