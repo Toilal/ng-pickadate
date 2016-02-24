@@ -121,6 +121,19 @@
         if (ngModel) {
           ngModel.$setPristine();
         }
+
+        function updateOptions(newValue) {
+          if (typeof newValue === "object") {
+            element.pickadate('picker').set(newValue)
+          }
+        }
+
+        scope.$watch(attrs.pickADateOptions, function (newValue, oldValue) {
+          if (newValue === oldValue) {
+            return;
+          }
+          updateOptions(newValue)
+        }, true);
       }
     };
   }]);
@@ -224,6 +237,20 @@
           }
           updateValue(newValue);
         }, true);
+
+        function updateOptions(newValue) {
+          if (typeof newValue === "object") {
+            element.pickatime('picker').set(newValue)
+          }
+        }
+
+        scope.$watch(attrs.pickATimeOptions, function (newValue, oldValue) {
+          if (newValue === oldValue) {
+            return;
+          }
+          updateOptions(newValue)
+        }, true);
+
 
         if (ngModel) {
           ngModel.$setPristine();
